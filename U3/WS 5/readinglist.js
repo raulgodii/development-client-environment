@@ -13,11 +13,14 @@ class BookList{
     }
 
     finishCurrentBook(){
-        this.currentBook.read = true;
-        this.currentBook.readDate = Date.now();
-        this.lastBook = this.currentBook;
-        this.currentBook = this.nextBook;
-        this.nextBook = this.findNextBookToRead();
+        if(this.currentBook){
+            this.currentBook.read = true;
+            this.currentBook.readDate = Date.now();
+            this.lastBook = this.currentBook;
+            this.currentBook = this.nextBook;
+            this.nextBook = this.findNextBookToRead();
+        }
+        
     }
 
     findNextBookToRead() {
