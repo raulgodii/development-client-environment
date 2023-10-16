@@ -14,7 +14,12 @@ class BookList{
 
     finishCurrentBook(){
         this.currentBook.read = true;
+        this.currentBook.readDate = Date.now();
         this.lastBook = this.currentBook;
+        this.currentBook = this.nextBook;
+        this.nextBook = () => {
+            for()
+        }
     }
 
 
