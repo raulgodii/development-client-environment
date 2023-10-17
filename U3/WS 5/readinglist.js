@@ -55,8 +55,17 @@ class BookList{
 
     showBooks(){
         this.books.forEach((element, index)=> {
-            document.write(" - " + element.title + ", " + element.genre + ", " + element.author + ", " + (element.read ? "read":"no read") + "<br>");
+            document.write(" - " + element.title + ", " + element.genre + ", " + element.author + ", " + (element.readDate  ? this.formatDate(new Date(element.readDate)):"No Read Date") +", " + (element.read ? "read":"no read") + "<br>");
         });
+    }
+
+    formatDate(date) {
+        const day = date.getDate();
+        const month = date.getMonth() + 1; // Los meses comienzan desde 0
+        const year = date.getFullYear();
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+        return `${day}-${month}-${year}-${minutes}:${seconds}`;
     }
 
 }
@@ -108,14 +117,33 @@ document.write("<br><br>");
 
 document.write('Number of books read: ', bookList.getNumberOfBooksRead() + "<br>"); 
 document.write('Number of books not read: ', bookList.getNumberOfBooksNotRead() + "<br>"); 
+document.write("<br><br>");
 
 document.write("<p style=\"color:red\">-- LEEMOS TRES LIBROS<p><br><br>");
 bookList.finishCurrentBook();
 bookList.finishCurrentBook();
 bookList.finishCurrentBook();
 
-document.write("<b> CURRENT BOOK: </b>" + (bookList.currentBook ? BookList.currentBook.title : "No Current Book") + "<br>");
-document.write("<b> NEXT BOOK: </b>" + (bookList.nextBook ? BookList.nextBook.title : "No Current Book") + "<br>");
+document.write("<b> CURRENT BOOK: </b>" + (bookList.currentBook ? bookList.currentBook.title : "No Current Book") + "<br>");
+document.write("<b> NEXT BOOK: </b>" + (bookList.nextBook ? bookList.nextBook.title : "No Next Book") + "<br>");
+document.write("<b> LAST BOOK: </b>" + bookList.lastBook.title + "<br>");
+document.write("<br><br>");
+document.write("<b> LISTA DE LIBROS </b><br>");
+bookList.showBooks();
+document.write("<br><br>");
+
+document.write('Number of books read: ', bookList.getNumberOfBooksRead() + "<br>"); 
+document.write('Number of books not read:' , bookList.getNumberOfBooksNotRead() + "<br>"); 
+document.write("<br><br>");
+
+
+document.write("<p style=\"color:red\">-- AÑADIMOS UN LIBRO NUEVO<p><br><br>");
+const book5 = new Book('Book 5', 'Mystery', 'Author 5');
+bookList.add(book5);
+
+
+document.write("<b> CURRENT BOOK: </b>" + (bookList.currentBook ? bookList.currentBook.title : "No Current Book") + "<br>");
+document.write("<b> NEXT BOOK: </b>" + (bookList.nextBook ? bookList.nextBook.title : "No Next Book") + "<br>");
 document.write("<b> LAST BOOK: </b>" + bookList.lastBook.title + "<br>");
 document.write("<br><br>");
 document.write("<b> LISTA DE LIBROS </b><br>");
