@@ -36,7 +36,7 @@ class BookList{
     }
 
     findNextBookToRead() {
-        return this.books.find(book => !book.read && !this.currentBook);
+        return this.books.find(book => (!book.read) && (book!=this.currentBook));
     }
 
     getNumberOfBooksRead() {
@@ -90,7 +90,7 @@ document.write("<b> NEXT BOOK: </b>" + bookList.nextBook.title + "<br>");
 document.write("<b> LAST BOOK: </b>" + (bookList.lastBook ? bookList.lastBook.title:"No Books Read Yet") + "<br>");
 document.write("<br><br>");
 
-document.write("-- LEEMOS UN LIBRO<br><br>");
+document.write("<p style=\"color:red\">-- LEEMOS UN LIBRO<p><br><br>");
 bookList.finishCurrentBook();
 
 document.write("<b> CURRENT BOOK: </b>" + bookList.currentBook.title + "<br>");
@@ -104,9 +104,21 @@ bookList.showBooks();
 document.write("<br><br>");
 
 
-console.log('Number of books read:', bookList.getNumberOfBooksRead()); // Output: 0
-console.log('Number of books not read:', bookList.getNumberOfBooksNotRead()); // Output: 3
+document.write('Number of books read: ', bookList.getNumberOfBooksRead() + "<br>"); 
+document.write('Number of books not read: ', bookList.getNumberOfBooksNotRead() + "<br>"); 
 
+document.write("<p style=\"color:red\">-- LEEMOS TRES LIBROS<p><br><br>");
 bookList.finishCurrentBook();
-console.log('Number of books read:', bookList.getNumberOfBooksRead()); // Output: 1
-console.log('Number of books not read:', bookList.getNumberOfBooksNotRead()); // Output: 2
+bookList.finishCurrentBook();
+bookList.finishCurrentBook();
+
+document.write("<b> CURRENT BOOK: </b>" + (bookList.currentBook ? BookList.currentBook.title : "No Current Book") + "<br>");
+document.write("<b> NEXT BOOK: </b>" + (bookList.nextBook ? BookList.nextBook.title : "No Current Book") + "<br>");
+document.write("<b> LAST BOOK: </b>" + bookList.lastBook.title + "<br>");
+document.write("<br><br>");
+document.write("<b> LISTA DE LIBROS </b><br>");
+bookList.showBooks();
+document.write("<br><br>");
+
+document.write('Number of books read: ', bookList.getNumberOfBooksRead() + "<br>"); 
+document.write('Number of books not read:' , bookList.getNumberOfBooksNotRead() + "<br>"); 
