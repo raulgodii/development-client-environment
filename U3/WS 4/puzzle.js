@@ -3,16 +3,15 @@ class puzzle{
     whitePieceY; // Index [y] of the white Space
     dim; // Dimensions of the board
     board; // Board
+    solution; // Board solution
 
     constructor(dim){
         // Create the board with dimension: dim x dim and save whiteSpace position
-        this.board = this.createBoard(dim);
+        this.board=this.createBoard(dim);
         this.whitePieceX = dim-1; 
         this.whitePieceY = dim-1;
         this.dim = dim;
-
-        // Create the solution
-        this.solution = this.board;
+        this.solution = this.board.map(row => row.slice());
 
         // Shuffle
         this.shuffleBoard();
@@ -54,6 +53,7 @@ class puzzle{
     }
 
     // SHUFFLE BOARD (moving whitePiece)
+    // Makes 50 random initials movements
     shuffleBoard(){
         let movements = ["moveRight", "moveLeft", "moveUp", "moveDown"];
         for(let i=0; i<50; i++){
@@ -64,48 +64,52 @@ class puzzle{
     }
 
     // MOVE RIGHT (whitePiece)
-    moveRight(){
+    moveRight(p=0){
         if(this.validMovement(this.whitePieceY, this.whitePieceX, this.whitePieceY, this.whitePieceX+1)){
             this.board[this.whitePieceY][this.whitePieceX] = this.board[this.whitePieceY][this.whitePieceX+1];
             this.board[this.whitePieceY][this.whitePieceX+1] = -1;
             this.whitePieceX += 1;
             this.showBoard();
+            if(this.boardCompleted() && p!=0) document.write("<h1 style=\"color:red\">Enhorabuena resolviste el fucking puzzle!</h1>");
             return true;
         }
         return false;   
     }
 
     // MOVE LEFT (whitePiece)
-    moveLeft(){
+    moveLeft(p=0){
         if(this.validMovement(this.whitePieceY, this.whitePieceX, this.whitePieceY, this.whitePieceX-1)){
             this.board[this.whitePieceY][this.whitePieceX] = this.board[this.whitePieceY][this.whitePieceX-1];
             this.board[this.whitePieceY][this.whitePieceX-1] = -1;
             this.whitePieceX -= 1;
             this.showBoard();
+            if(this.boardCompleted() && p!=0) document.write("<h1 style=\"color:red\">Enhorabuena resolviste el fucking puzzle!</h1>");
             return true;
         }
         return false;  
     }
 
     // MOVE DOWN (whitePiece)
-    moveDown(){
+    moveDown(p=0){
         if(this.validMovement(this.whitePieceY, this.whitePieceX, this.whitePieceY+1, this.whitePieceX)){
             this.board[this.whitePieceY][this.whitePieceX] = this.board[this.whitePieceY+1][this.whitePieceX];
             this.board[this.whitePieceY+1][this.whitePieceX] = -1;
             this.whitePieceY += 1;
             this.showBoard();
+            if(this.boardCompleted() && p!=0) document.write("<h1 style=\"color:red\">Enhorabuena resolviste el fucking puzzle!</h1>");
             return true;
         }
         return false;  
     }
 
     // MOVE UP (whitePiece)
-    moveUp(){
+    moveUp(p=0){
         if(this.validMovement(this.whitePieceY, this.whitePieceX, this.whitePieceY-1, this.whitePieceX)){
             this.board[this.whitePieceY][this.whitePieceX] = this.board[this.whitePieceY-1][this.whitePieceX];
             this.board[this.whitePieceY-1][this.whitePieceX] = -1;
             this.whitePieceY -= 1;
             this.showBoard();
+            if(this.boardCompleted() && p!=0) document.write("<h1 style=\"color:red\">Enhorabuena resolviste el fucking puzzle!</h1>");
             return true;
         }
         return false;  
@@ -129,9 +133,25 @@ class puzzle{
 
         return valid;
     }
+
+    // BOARD COMPLETED
+    // Check if the board is finished, therefore the game will finish
+    boardCompleted(){
+        let cont = 0;
+        for(let y=0; y<dim; y++){
+            for(let x=0; x<dim; x++){
+                if(this.board[y][x] != this.solution[y][x]){
+                    return false; // return false if there is one different element
+                }
+                cont++;
+            }
+        }
+        return true; // return true if there are all elements the same as solution
+    }
 }
 
 dim = prompt("Introduce las dimensiones del tablero");
 board = new puzzle(dim);
 
 board.showBoard();
+
