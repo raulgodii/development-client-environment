@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        td, th {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+
+        th {
+            background-color: #8b928c;
+            color: white;
+        }
+
+        button {
+            background-color: #8b928c;
+            color: white;
+            border: 2px solid #8b928c;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition-duration: 0.4s;
+        }
+
+        button:hover {
+            background-color: white;
+            color: #8b928c;
+            border: 2px solid #8b928c;
+        }
+    </style>
+</head>
+<body>
+    <table id="board"></table>
+
+    <script src="puzzle.js"></script>
+    <div>
+        <button onclick="board.moveLeft()">Izquierda</button>
+        <button onclick="board.moveRight()">Derecha</button>
+        <button onclick="board.moveUp()">Arriba</button>
+        <button onclick="board.moveDown()">Abajo</button>
+    </div>
+
+    
+</body>
+</html>
