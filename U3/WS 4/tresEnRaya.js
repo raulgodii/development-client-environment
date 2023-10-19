@@ -2,10 +2,14 @@ class ticTacToe{
     dim; // Dimension of the board (3)
     board; // Board 3x3 of the game
     round; // Round of the game
+
     constructor(){
         this.dim = 3;
         this.board=this.createBoard();
         this.round=0;
+        this.end=0;
+        let reboot = document.getElementById("reboot");
+        reboot.style.display = "none";
     }
 
     // Shows the actually Board
@@ -38,7 +42,7 @@ class ticTacToe{
 
     // PUT PIECE
     putPiece(y, x){
-        if(this.isValid(y, x)){
+        if(this.isValid(y, x) && this.end==0){
             const element = document.getElementById(y+", "+x);
             if(this.round%2==0){
                 element.textContent = "X";
@@ -49,8 +53,9 @@ class ticTacToe{
                 this.board[y][x] = "O";
                 this.round++;
             }
+            this.checkWinner();
         }
-        this.checkWinner();
+        
     }
 
     // IS VALID
@@ -111,21 +116,14 @@ class ticTacToe{
         let positions = [];
         let cont = 0;
 
-        for(i=0; i<3; i++){
-            for(j=0; i<3; i++){
-            
-            }
-        }
-        this.board.forEach((y, yi) => {
-            y.forEach((x, xi) => {
-                if(this.board[yi, xi]==player){
+        for(let i=0; i<3; i++){
+            for(let j=0; j<3; j++){
+                if(this.board[j][i]==player){
                     positions.push(cont);
                 }
                 cont++;
-            });
-        });
-
-        console.log("Positions: "+ positions);
+            }
+        }  
         return positions;
     }
 
@@ -133,6 +131,7 @@ class ticTacToe{
     // Print the result of the game
     finishGame(r){
         const res = document.getElementById("res");
+        this.end=1;
         switch (r) {
             case "d":
                 res.textContent = "Fin del juego: Empate";
@@ -146,5 +145,14 @@ class ticTacToe{
             default:
                 res.textContent = "Ha habido un error al acabar el juego";
         }
+
+        let reboot = document.getElementById("reboot");
+        reboot.style.display = "block";
     }
+
+    // REBOOT
+    
 }
+
+board = new ticTacToe;
+board.showBoard();
