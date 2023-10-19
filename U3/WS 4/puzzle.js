@@ -137,7 +137,6 @@ class puzzle{
     // BOARD COMPLETED
     // Check if the board is finished, therefore the game will finish
     boardCompleted(){
-        let cont = 0;
         for(let y=0; y<dim; y++){
             for(let x=0; x<dim; x++){
                 if(this.board[y][x] != this.solution[y][x]){
@@ -154,4 +153,3 @@ dim = prompt("Introduce las dimensiones del tablero");
 board = new puzzle(dim);
 
 board.showBoard();
-
