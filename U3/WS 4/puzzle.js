@@ -58,7 +58,6 @@ class puzzle{
         let movements = ["moveRight", "moveLeft", "moveUp", "moveDown"];
         for(let i=0; i<50; i++){
             let randomMovement = movements[Math.floor(Math.random()*movements.length)];
-            console.log(randomMovement);
             this[randomMovement]();
         }
     }
