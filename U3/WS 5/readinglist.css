@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body{
+    background-color: #212529;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+svg>path {
+    fill: #adb5bd;
+}
+
+h1{
+    color: #f8f9fa;
+}
+
+header, footer, .addBook{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+footer{
+    color: #495057;
+    font-weight: bold;
+}
+
+main{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+main>section{
+    max-width: 500px;
+    min-width: 100px;
+    margin: 50px;
+}
+
+input{
+    display: block;
+}
