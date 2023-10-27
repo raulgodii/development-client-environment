@@ -51,9 +51,6 @@ main>section{
     gap: 20px;
 }
 
-.author, .genre{
-    max-width: 90%;
-}
 
 input{
     display: block;
@@ -130,10 +127,6 @@ form{
     justify-content: center; 
 }
 
-.title{
-    width: 100%;
-}
-
-.title input{
+.title, .title input, .author input,.genre input{
     width: 100%;
 }
