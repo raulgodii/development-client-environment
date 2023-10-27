@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+    <script src="ej2.js"></script>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #errorNombre, #errorApellidos, #errorDni, #errorTelefono, #errorEmail, #errorUsuario{
+            color: red;
+            margin: 5px 0px 25px 0px;
+            font-size: 13px;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Registro</h1>
+    <form action="#">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre"><br>
+        <label for="nombre" id="errorNombre"></label>
+
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos"><br>
+        <label for="apellidos" id="errorApellidos"></label>
+
+        <label for="dni">DNI:</label>
+        <input type="text" id="dni" name="dni" ><br>
+        <label for="dni" id="errorDni"></label>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" name="telefono"><br>
+        <label for="telefono" id="errorTelefono"></label>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email"><br>
+        <label for="email" id="errorEmail"></label>
+
+        <label for="usuario">Nombre de Usuario:</label>
+        <input type="text" id="usuario" name="usuario" ><br>
+        <label for="usuario" id="errorUsuario"></label>
+
+        <input type="submit" id="submit" value="Registrarse">
+    </form>
+</body>
+</html>
