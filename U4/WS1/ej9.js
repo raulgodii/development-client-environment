@@ -15,8 +15,8 @@ window.onload = () =>{
         moveOsvaldo= !moveOsvaldo;
 
 
-        osvaldoX = e.clientX;
-        osvaldoY = e.clientY;
+        osvaldoX = e.offsetX;
+        osvaldoY = e.offsetY;
 
         
         console.log("OSVALDO" + osvaldoX + ", " + osvaldoY);
