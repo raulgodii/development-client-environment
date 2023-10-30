@@ -23,6 +23,11 @@ header, footer, .addBook{
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    justify-content: center;
+}
+
+header svg{
+    margin: 50px;
 }
 
 footer{
@@ -30,10 +35,13 @@ footer{
     font-weight: bold;
 }
 
+footer p{
+    margin: 10px;
+}
+
 main{
     display: flex;
     flex-flow: row wrap;
-    align-items: center;
     justify-content: center;
 }
 
@@ -129,4 +137,52 @@ form{
 
 .title, .title input, .author input,.genre input{
     width: 100%;
+}
+
+.readingList{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 100%;
+}
+
+.row{
+    background-color: #adb5bd;
+    border: 2px solid white;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.booksRead{
+    color: white;
+    margin: 5px;
+}
+
+.p1 h3, .p1 h4{
+    margin: 10px;
+}
+
+.row p{
+    margin: 10px;
+}
+
+.readingList h2{
+    margin-bottom: 10px;
+}
+
+.row{
+    margin: 5px 0px;
+}
+
+@media screen and (max-width: 525px){
+    .authorGenre{
+        flex-direction: column;
+    }
+
+    main>section{
+        margin: 20px 50px;
+    }
 }
