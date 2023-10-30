@@ -5,9 +5,9 @@ Crea 3 funciones genéricas para el manejo de cookies:
     c) BorrarCookie().
 */
 
-function setCookie(id,val,hExpires){
+function setCookie(id,val,minExpires){
     let date = new Date();
-    date.setTime(date.getTime() + (hExpires * 60 * 60 * 1000)); // Transform date in hours to miliseconds
+    date.setTime(date.getTime() + (minExpires * 60 * 1000)); // Transform date in min to miliseconds
     let expires = "expires=" + date.toUTCString();
     document.cookie = id+"="+val+";"+expires;
 }
@@ -26,7 +26,7 @@ function readCookie(id){
 }
 
 function deleteCookie(id){
-    if(readCookie(id)){
+    if(readCookie(id)!=null){
         document.cookie = id + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
         return true;
     }
