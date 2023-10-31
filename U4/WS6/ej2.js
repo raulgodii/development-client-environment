@@ -14,10 +14,13 @@ window.onload = () => {
         if(!checkValues()){
             e.preventDefault();
         }else{
-            
             setCookie("colorBg", colorBg.value, 5);
             setCookie("colorP", colorP.value, 5);
             setCookie("fontSize", fontSize.value, 5);
+
+            res.style.backgroundColor = colorBg.value;
+        res.style.color = colorP.value;
+        res.style.fontSize = fontSize.value + "px";
         }
     });
 
@@ -49,7 +52,7 @@ function checkCookie(id, value){
 
 function checkFontSize(cad){
     let regex = /^[0-9]+$/;
-    res = regex.test(cad);
+    let res = regex.test(cad);
     if(!res){
         errorFontSize.innerHTML = "ERROR: ¡Introduce un tamaño valido!"
     }else{
