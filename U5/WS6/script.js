@@ -1,8 +1,13 @@
+// Realiza una animación sobre uno de los gráficos del punto 1a. 
+// Para ello suponemos que pasados 10 segundos cambian los datos 
+// y debe animarse automáticamente.
+
 window.onload = () => {
     google.charts.load("current", {packages:['corechart']});
 
     google.charts.setOnLoadCallback(drawChartBar);
-    google.charts.setOnLoadCallback(drawChartPie);
+
+    setInterval(google.charts.setOnLoadCallback(drawChartPie), 1000);
 
     function drawChartBar() {
         var data = google.visualization.arrayToDataTable([
