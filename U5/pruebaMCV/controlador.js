@@ -1,20 +1,24 @@
+var miListaLibros;
 window.onload = () => {
-    class Libro{
-        constructor (tit, autor, año){
-            this.titulo = tit;
-            this.autor = autor;
-            this.año = año;
-        }
-    }
 
-    class ListaLectura{
-        constructor(){
-            this.listaLibros = [];
-        }
+    //  Creo los datos
+    miListaLibros = new ListaLectura();
 
-        addLibro(libro){
-            this.listaLibros.push(libro);
-        }
-    }
+    // Defino eventos
+    document.getElementById("btnAlta").addEventListener("click", altaLibro);
+}
 
+function altaLibro(){
+    let tit = document.getElementById("inputTit").value;
+    let aut = document.getElementById("inputAut").value;
+    let año = document.getElementById("inputAño").value;
+
+    let nuevoLibro = new Libro(tit, aut, año);
+    miListaLibros.addLibro(nuevoLibro);
+    actualizarVista();
+}
+
+function actualizarVista(){
+    //vistaSimple("misLibros", miListaLibros.listaLibros);
+    vistaCompleja("misLibros", miListaLibros.listaLibros);
 }
