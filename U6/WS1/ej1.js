@@ -92,16 +92,20 @@ function loadTiempo(cmun) {
     xhttp.onload = function() {
         json = JSON.parse(this.response);
 
-        console.log(json[0].provincia);
+        let div = document.getElementById("tiempo");
+        div.innerHTML = '';
+
+        let provincia = document.createElement("h2");
+        let municipio = document.createElement("h3");
 
         // Provincia
-        document.getElementById("provincia").textContent = json[0].provincia;
+        provincia.textContent = json[0].provincia;
 
         // Municipio
-        document.getElementById("municipio").textContent = json[0].nombre;
+        municipio.textContent = json[0].nombre;
 
         // Dia por dia
-        let div = document.getElementById("tiempo");
+        
         let ul = document.createElement("ul");
         
         json[0].prediccion.dia.forEach(dia => {
@@ -121,6 +125,8 @@ function loadTiempo(cmun) {
             ul.appendChild(ul2);
         });
 
+        div.appendChild(provincia);
+        div.appendChild(municipio);
         div.appendChild(ul);
     }
     xhttp.open("GET", 'ej1b.php?cmun='+cmun, true);
