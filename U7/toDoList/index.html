@@ -20,7 +20,7 @@
         <p> {{listElements.length==0 ? 'No hay elementos aún': 'Hay ' + listElements.length + ' elementos'}}</p>
         <p v-if="filter">Tienes {{countElements}} tareas pendientes de: {{listElements.length}}</p>
         <ul>
-            <li v-for="(element, index) in filterElements" :key="index">
+            <li v-for="(element, index) in filterElements">
                 <input type="checkbox" v-model="element.done" @input="changeDoneElement(index)">
                 {{ element }}
             </li>
@@ -36,8 +36,7 @@
                 listElements: [],
                 element: '',
                 filter: false,
-                search: '',
-                id: 0
+                search: ''
             }
         },
 
@@ -61,6 +60,7 @@
             
             changeDoneElement(id){
                 this.listElements[id].done = true;
+                localStorage.setItem("listElements", JSON.stringify(this.listElements) );
             }
         },    
 
