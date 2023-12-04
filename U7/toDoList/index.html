@@ -20,7 +20,10 @@
         <p> {{listElements.length==0 ? 'No hay elementos aún': 'Hay ' + listElements.length + ' elementos'}}</p>
         <p v-if="filter">Tienes {{countElements}} tareas pendientes de: {{listElements.length}}</p>
         <ul>
-            <li v-for="element in filterElements" :id="id"><input type="checkbox" v-model="doneElement" @input="changeDoneElement(id)">{{ element }}</li>
+            <li v-for="(element, index) in filterElements" :key="index">
+                <input type="checkbox" v-model="element.done" @input="changeDoneElement(index)">
+                {{ element }}
+            </li>
         </ul>
     </div>
 
@@ -38,6 +41,10 @@
             }
         },
 
+        mounted(){
+            this.listElements = JSON.parse(localStorage.getItem("listElements"))
+        },
+
         methods: {
             addElement(){
                 this.listElements.push({
@@ -47,6 +54,7 @@
                     done: false, 
                 }
                 );
+                localStorage.setItem("listElements", JSON.stringify(this.listElements) );
                 this.id++;
                 this.element = '';
             },
