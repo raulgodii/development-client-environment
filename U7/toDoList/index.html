@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        Add: 
+        <input type="text" v-model="element" @keyup.enter="addElement()">
+        <button @click="addElement()">Add</button>
+        Search Filter:
+        <input type="text" @input="listElements" v-model="search" placeholder="Search elements" v-if="filter" >
+        <br>
+        Filter
+        <input type="checkbox" v-model="filter">
+        <p> {{listElements.length==0 ? 'No hay elementos aún': 'Hay ' + listElements.length + ' elementos'}}</p>
+        <p v-if="filter">Tienes {{countElements}} tareas pendientes de: {{listElements.length}}</p>
+        <ul>
+            <li v-for="element in filterElements" :id="id"><input type="checkbox" v-model="doneElement" @input="changeDoneElement(id)">{{ element }}</li>
+        </ul>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+        data() {
+            return {
+                listElements: [],
+                element: '',
+                filter: false,
+                search: '',
+                id: 0
+            }
+        },
+
+        methods: {
+            addElement(){
+                this.listElements.push({
+                    text: this.element, 
+                    priority: 0,
+                    date: Date.now(),
+                    done: false, 
+                }
+                );
+                this.id++;
+                this.element = '';
+            },
+            
+            changeDoneElement(id){
+                this.listElements[id].done = true;
+            }
+        },    
+
+        computed:{
+            filterElements(){
+                if(this.filter){
+                    return this.listElements.filter(el => el.text.includes(this.search));
+                } else {
+                    return this.listElements;
+                }
+            },
+
+            countElements(){
+                return this.listElements.filter(el => !el.done).length;
+            }
+        }
+    
+        }).mount('#app')
+    </script>
+</body>
+</html>
