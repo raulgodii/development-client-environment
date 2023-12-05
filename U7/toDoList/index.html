@@ -23,6 +23,7 @@
             <li v-for="(element, index) in filterElements" :key="element.date">
                 <input type="checkbox" v-model="element.done" @input="changeDoneElement(element)">
                 <span @click="changePriority(element)">{{ element }}</span>
+                <button @click="deleteElement(element)">delete</button>
             </li>
         </ul>
     </div>
@@ -69,6 +70,13 @@
                     element.priority=0;
                 }
                 localStorage.setItem("listElements", JSON.stringify(this.listElements) );
+            },
+
+            deleteElement(element){
+                const index = this.listElements.indexOf(element);
+                if (index !== -1) {
+                    this.listElements.splice(index, 1);
+                }
             }
         },    
 
