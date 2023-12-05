@@ -20,15 +20,15 @@
         <p> {{listElements.length==0 ? 'No hay elementos aún': 'Hay ' + listElements.length + ' elementos'}}</p>
         <p v-if="filter">Tienes {{countElements}} tareas pendientes de: {{listElements.length}}</p>
         <ul>
-            <li v-for="(element, index) in filterElements">
-                <input type="checkbox" v-model="element.done" @input="changeDoneElement(index)">
-                {{ element }}
+            <li v-for="(element, index) in filterElements" :key="element.date">
+                <input type="checkbox" v-model="element.done" @input="changeDoneElement(element)">
+                <span @click="changePriority(element)">{{ element }}</span>
             </li>
         </ul>
     </div>
 
     <script>
-        const { createApp } = Vue
+        const { createApp } = Vue;
 
         createApp({
         data() {
@@ -58,19 +58,27 @@
                 this.element = '';
             },
             
-            changeDoneElement(id){
-                this.listElements[id].done = true;
+            changeDoneElement(element){
+                element.done = true;
+                localStorage.setItem("listElements", JSON.stringify(this.listElements) );
+            },
+
+            changePriority(element){
+                element.priority++;
+                if(element.priority >=3){
+                    element.priority=0;
+                }
                 localStorage.setItem("listElements", JSON.stringify(this.listElements) );
             }
         },    
 
         computed:{
             filterElements(){
-                if(this.filter){
-                    return this.listElements.filter(el => el.text.includes(this.search));
-                } else {
-                    return this.listElements;
-                }
+                let filterArr =  this.listElements.filter(el => el.text.includes(this.search));
+                filterArr.sort((a,b) => {
+                    return b.priority-a.priority;
+                });
+                return filterArr;
             },
 
             countElements(){
