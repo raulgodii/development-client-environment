@@ -6,8 +6,8 @@
       <p>{{nombreUsuario}}</p>
       <p>Congratulations! Your app is running. 🎉</p>
       <img src="{{urlImagen}}" alt="imagen">
-      <button (click)="cambiaTitulo()">Cambiar titulo</button>
-      <input (keyup.enter)="pulsarTecla()" type="text">
+      <button *ngIf="title" (click)="cambiaTitulo()">Cambiar titulo</button>
+      <input (keyup.enter)="pulsarTecla()" [(ngModel)]="title" type="text">
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
   </div>
