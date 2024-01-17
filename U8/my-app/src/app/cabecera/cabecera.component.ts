@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-cabecera',
   standalone: true,
-  imports: [],
+  imports: [NgbAlertModule],
   templateUrl: './cabecera.component.html',
   styleUrl: './cabecera.component.css'
 })
