@@ -1,1 +1,10 @@
-<p>cuerpo works!</p>
+<ul>
+    <li *ngFor="let item of items; let i=index" (click)="borrarItem(i)">{{item}}</li>
+    <input type="text" (keyup.enter)="nuevoValor()" [(ngModel)]="contenidoInput">
+</ul>
+
+<button (click)="peticionAJAX()">Obtener datos</button>
+
+<ul>
+    <li *ngFor="let criptoMoneda of criptos; let i=index">{{criptoMoneda.name}}</li>
+</ul>

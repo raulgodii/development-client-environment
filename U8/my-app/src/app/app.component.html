@@ -2,7 +2,6 @@
   <div class="content">
     <div class="left-side">
       <app-cabecera></app-cabecera>
-      <app-cuerpo></app-cuerpo>
       <h1>Hola, {{ title }}</h1>
       <p>{{nombreUsuario}}</p>
       <p>Congratulations! Your app is running. 🎉</p>
@@ -12,6 +11,7 @@
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
   </div>
-</main>+
+  <app-cuerpo></app-cuerpo>
+</main>
 
 <router-outlet></router-outlet>
