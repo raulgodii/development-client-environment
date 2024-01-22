@@ -11,7 +11,8 @@
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
   </div>
-  <app-cuerpo></app-cuerpo>
+  <app-detalle [id]="title"></app-detalle>
+  <app-cuerpo (lanzadaPeticionEvent)="trataEventoDeHijo($event)"></app-cuerpo>
 </main>
 
 <router-outlet></router-outlet>

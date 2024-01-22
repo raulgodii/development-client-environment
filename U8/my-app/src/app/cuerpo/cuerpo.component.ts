@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { PeticionesAJAXService } from '../peticiones-ajax.service';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-cuerpo',
@@ -14,16 +15,19 @@ export class CuerpoComponent {
   items = ["item1", "item2", "item3", "item4"];
   criptos :any[] = [];
   contenidoInput = "";
+  loader = false;
+  @Output() lanzadaPeticionEvent = new EventEmitter<string>();
 
-  constructor(private http: HttpClient){
-
+  constructor(public ajax:PeticionesAJAXService){
+    
   }
 
-  peticionAJAX(){
-    this.http.get("https://api.coingecko.com/api/v3/coins/list").subscribe((datos:any)=>{
-      console.log(datos);
-      this.criptos = datos;
-    });
+  obtenenerCriptos(){
+    this.loader = true;
+    this.ajax.peticionAJAX();
+    this.loader = false;
+      //this.criptos = datos;
+    this.lanzadaPeticionEvent.emit("Peticion en curso");
   }
 
   nuevoValor(){

@@ -3,8 +3,10 @@
     <input type="text" (keyup.enter)="nuevoValor()" [(ngModel)]="contenidoInput">
 </ul>
 
-<button (click)="peticionAJAX()">Obtener datos</button>
+<button (click)="obtenenerCriptos()">Obtener criptos</button>
+
+<div class="spinner" *ngIf="loader"></div>
 
 <ul>
-    <li *ngFor="let criptoMoneda of criptos; let i=index">{{criptoMoneda.name}}</li>
+    <li *ngFor="let criptoMoneda of ajax.datosAPI; let i=index">{{criptoMoneda.name}}</li>
 </ul>
