@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-detalle',
@@ -7,6 +7,10 @@ import { Component, Input } from '@angular/core';
   templateUrl: './detalle.component.html',
   styleUrl: './detalle.component.css'
 })
-export class DetalleComponent {
+export class DetalleComponent implements OnInit{
   @Input() id:string = "";
+
+  ngOnInit(): void {
+      console.log("ID" + this.id);
+  }
 }
