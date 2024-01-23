@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PeticionesAJAXService } from '../peticiones-ajax.service';
 import { Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cuerpo',
@@ -18,7 +19,7 @@ export class CuerpoComponent {
   loader = false;
   @Output() lanzadaPeticionEvent = new EventEmitter<string>();
 
-  constructor(public ajax:PeticionesAJAXService){
+  constructor(public ajax:PeticionesAJAXService, private router:Router){
     
   }
 
@@ -38,5 +39,10 @@ export class CuerpoComponent {
   borrarItem(i:any){
     console.log("borrando")
     this.items.splice(i, 1);
+  }
+
+  mostrarDetalle(id:any){
+    console.log("Navengando al detalle del: " + id);
+    this.router.navigate(["detalle/" + id]);
   }
 }
